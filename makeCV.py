@@ -29,7 +29,7 @@ def roundto100(N):
 
 def pdflatex(filename):
     os.system('pdflatex '+filename+' >/dev/null')
-
+'''
 def checkinternet():
     url = "http://www.google.com"
     timeout = 5
@@ -39,6 +39,7 @@ def checkinternet():
     except (requests.ConnectionError, requests.Timeout) as exception:
 	    connected = False
     return connected
+'''
 
 def ads_citations(papers,testing=False):
 
