@@ -1,27 +1,25 @@
-import gspread
-import numpy as np
-import json
-import skywalker
-#import ads
-from tqdm import tqdm
-import copy
+import os
 import sys
 import time
-import os
-import requests
-import urllib.request
-import urllib.error
 import html
-from database import papers, talks
-from datetime import datetime
+import json
 import shutil
-from github_release import gh_release_create
+import gspread
+import requests
 import warnings
-
+import numpy as np
+import urllib.error
+import urllib.request
+#import ads
+#import copy
+#import skywalker
+from tqdm import tqdm
+from datetime import datetime
+from database import papers, talks
+from github_release import gh_release_create
 
 #import ssl
 #ssl._create_default_https_context = ssl._create_unverified_context
-
 
 def hindex(citations):
     return sum(x >= i + 1 for i, x in enumerate(sorted(  list(citations), reverse=True)))
@@ -46,7 +44,7 @@ def ads_citations(papers,testing=False):
 
     print('Get citations from ADS')
 
-    with open('/Users/dgerosa/reps/dotfiles/adstoken.txt') as f:
+    with open('/Users/fdesanti/reps/dotfiles/adstoken.txt') as f:
         #ads.config.token = f.read()
         token = f.read()
 
@@ -163,7 +161,7 @@ def parsepapers(papers,filename="parsepapers.tex"):
         for p in papers[k]['data']:
             out.append("\\textbf{"+str(i)+".} & & \\textit{"+p['title'].strip(".")+".}")
             out.append("\\newline{}")
-            out.append(p['author'].replace("D. Gerosa","\\textbf{D. Gerosa}").strip(".")+".")
+            out.append(p['author'].replace("F. De Santi","\\textbf{F. De Santi}").strip(".")+".")
             out.append("\\newline{}")
             line=""
             if p['link']:
@@ -245,9 +243,9 @@ def metricspapers(papers,filename="metricspapers.tex"):
     first_author = []
     for k in ['submitted','published','proceedings']:
         for p in papers[k]['data']:
-            if "D. Gerosa" not in p['author']:
+            if "F. De Santi" not in p['author']:
                 raise ValueError("Looks like you're not an author:", p['title'])
-            first_author.append( p['author'].split("D. Gerosa")[0]=="" )
+            first_author.append( p['author'].split("F. De Santi")[0]=="" )
 
     out.append("(out of which \\textbf{"+str(np.sum(first_author))+"} first-authored papers and")
 
@@ -282,10 +280,10 @@ def metricspapers(papers,filename="metricspapers.tex"):
     out.append("\\textcolor{mark_color}{\\textbf{h-index}}: "+str(hind_excluding)+" ["+str(hind_including)+"].")
     out.append("\\\\")  
     out.append("\\textcolor{mark_color}{\\textbf{Web links to list services}}:")
-    out.append("\href{https://ui.adsabs.harvard.edu/search/filter_bibstem_facet_fq_bibstem_facet=NOT&filter_bibstem_facet_fq_bibstem_facet=(*%3A*%20NOT%20bibstem_facet%3A%22cosp%22)&filter_bibstem_facet_fq_bibstem_facet=bibstem_facet%3A%22tsra.conf%22&fq=%7B!type%3Daqp%20v%3D%24fq_doctype%7D&fq=%7B!type%3Daqp%20v%3D%24fq_bibstem_facet%7D&fq_bibstem_facet=((*%3A*%20NOT%20bibstem_facet%3A%22cosp%22)%20NOT%20bibstem_facet%3A%22tsra.conf%22)&fq_doctype=(doctype%3A%22misc%22%20OR%20doctype%3A%22inproceedings%22%20OR%20doctype%3A%22article%22%20OR%20doctype%3A%22eprint%22)&p_=0&q=%20author%3A%22Gerosa%2C%20Davide%22&sort=citation_count%20desc%2C%20bibcode%20desc}{\\textsc{ADS}};")
-    out.append("\href{http://inspirehep.net/search?ln=en&ln=en&p=exactauthor%3AD.Gerosa.1&of=hb&action_search=Search&sf=&so=d&rm=citation&rg=25&sc=0}{\\textsc{InSpire}};")
-    out.append("\href{http://arxiv.org/a/gerosa_d_1.html}{\\textsc{arXiv}};")
-    out.append("\href{https://orcid.org/0000-0002-0933-3579}{\\textsc{ORCID}}.")
+    out.append("\href{https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0000-2445-5729&sort=date+desc}{\\textsc{ADS}};")
+    out.append("\href{https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20F.De.Santi.1}{\\textsc{InSpire}};")
+    out.append("\href{https://arxiv.org/a/desanti_f_1.html}{\\textsc{arXiv}};")
+    out.append("\href{https://orcid.org/0009-0000-2445-5729}{\\textsc{ORCID}}.")
 
     with open(filename,"w") as f: f.write("\n".join(out))
 
@@ -575,17 +573,17 @@ def publishgithub():
     date = datetime.now().strftime("%Y-%m-%d-%H-%M")
     print("Publish github release:", date)
 
-    shutil.copy2("CV.pdf", "DavideGerosa_fullCV.pdf")
-    shutil.copy2("CVshort.pdf", "DavideGerosa_shortCV.pdf")
-    shutil.copy2("publist.pdf", "DavideGerosa_publist.pdf")
-    shutil.copy2("publist.bib", "DavideGerosa_publist.bib")
-    shutil.copy2("talklist.pdf", "DavideGerosa_talklist.pdf")
+    shutil.copy2("CV.pdf", "FedericoDeSanti_fullCV.pdf")
+    shutil.copy2("CVshort.pdf", "FedericoDeSanti_shortCV.pdf")
+    shutil.copy2("publist.pdf", "FedericoDeSanti_publist.pdf")
+    shutil.copy2("publist.bib", "FedericoDeSanti_publist.bib")
+    shutil.copy2("talklist.pdf", "FedericoDeSanti_talklist.pdf")
 
     # Create a github token, see:
     # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
     # Make sure a GITHUB_TOKEN variable is part of the environment variables
 
-    gh_release_create("dgerosa/CV", date, publish=True, name=date, asset_pattern="DavideGerosa_*")
+    gh_release_create("fdesanti/CV", date, publish=True, name=date, asset_pattern="FedericoDeSanti_*")
 
     os.system("git pull") # This is to get new tags from github
 
