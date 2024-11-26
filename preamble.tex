@@ -8,8 +8,11 @@
 \usepackage{xcolor}
 \usepackage{xspace}
 \newcommand{\rsquo}{{\tt\char'023}}
-%\usepackage{orcidlink}
-%\newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\textcolor{lime}{\aiOrcid}}}
+
+
+\newcommand{\orcid}[1]{%
+  \href{https://orcid.org/#1}{\includegraphics[height=12pt]{orcid-logo.png}}%
+}
 
 \moderncvstyle{banking}
 \moderncvcolor{blue}
