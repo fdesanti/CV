@@ -130,13 +130,29 @@ if posters:
     talks['posters']['label'] = 'Posters at conferences'
     talks['posters']['data'] = []
 
-    #talks['posters']['data'].append({
-    #    "title":    Title,
-    #    "where":    where,
-    #    "when":     when,
-    #    "invited":  False,
-    #    "more":     ""
-    #    })
+    talks['posters']['data'].append({
+        "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
+        "where":    "GraSP24 - Gravity Shape Pisa 2024 Conference",
+        "when":     "23-25 Oct 2024",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['posters']['data'].append({
+        "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
+        "where":    "GraviGammaNu Workshop 2024 (Bari)",
+        "when":     "9-11 Oct 2024",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['posters']['data'].append({
+        "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
+        "where":    "GraviGammaNu Workshop 2024 (Bari)",
+        "when":     "9-11 Oct 2024",
+        "invited":  False,
+        "more":     ""
+        })
 
 
 if outreach:
