@@ -615,9 +615,9 @@ if __name__ == "__main__":
 
     replacekeys()
     builddocs()
-
+    
     if connected and not testing:
         pushtogit()
-        publishgithub()
+        #publishgithub()
 
     clean()
