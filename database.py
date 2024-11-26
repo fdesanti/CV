@@ -104,13 +104,13 @@ if seminars:
     talks['seminars']['label'] = 'Talks at department seminars'
     talks['seminars']['data'] = []
 
-    #talks['seminars']['data'].append({
-    #    "title":    title,
-    #    "where":    where,
-    #    "when":     when,
-    #    "invited":  True,
-    #    "more":     ""
-    #    })
+    talks['seminars']['data'].append({
+        "title":    "Probabilistic Machine Learning for the study of burst sources",
+        "where":    "Virgo Pisa Internal Workshop (INFN Pisa)",
+        "when":     "22-23 May 2024",
+        "invited":  True,
+        "more":     ""
+        })
 
 if lectures:
     talks['lectures'] = {}
@@ -118,9 +118,9 @@ if lectures:
     talks['lectures']['data'] = []
 
     #talks['lectures']['data'].append({
-    #    "title":    title,
-    #    "where":    where,
-    #    "when":     when,
+    #    "title":    "Probabilistic Machine Learning for the study of burst sources",
+    #    "where":    "Virgo Pisa Internal Workshop (INFN Pisa)",
+    #    "when":     "22-23 May 2024",
     #    "invited":  True,
     #    "more":     ""
     #    })
@@ -147,9 +147,9 @@ if posters:
         })
     
     talks['posters']['data'].append({
-        "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
-        "where":    "GraviGammaNu Workshop 2024 (Bari)",
-        "when":     "9-11 Oct 2024",
+        "title":    "Gravitational Waves from Binary Close Encounters: Fast Parameter Estimation with Normalizing Flows",
+        "where":    "LIGO-Virgo-KAGRA (LVK) Collaboration Meeting (Toyama, Japan)",
+        "when":     "11-14 Sep 2023",
         "invited":  False,
         "more":     ""
         })

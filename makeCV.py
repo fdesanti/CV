@@ -6,6 +6,7 @@ import json
 import shutil
 import gspread
 import requests
+import argparse
 import warnings
 import numpy as np
 import urllib.error
@@ -199,28 +200,29 @@ def parsetalks(talks,filename="parsetalks.tex"):
     out.append("")
 
     for k in ['conferences','seminars','lectures','posters','outreach']:
-        out.append("\\textcolor{color1}{\\textbf{"+talks[k]['label']+":}}")
-        out.append("\\vspace{-0.5cm}")
-        out.append("")
-        out.append("\cvitem{}{\small\hspace{-1cm}\\begin{longtable}{rp{0.3cm}p{15.8cm}}")
-        out.append("%")
-
-        i = len(talks[k]['data'])
-        for p in talks[k]['data']:
-            if p["invited"]:
-                mark="*"
-            else:
-                mark=""
-            out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textit{"+p['title'].strip(".")+".}")
-            out.append("\\newline{}")
-            out.append(p['where'].strip(".")+", "+p['when'].strip(".")+".")
-            if p['more']:
-                out.append("\\newline{}")
-                out.append("\\textcolor{color1}{$\\bullet$} "+p['more'].strip(".")+".")
-            out.append("\\vspace{0.05cm}\\\\")
+        if len(talks[k]['data'])>=1:
+            out.append("\\textcolor{color1}{\\textbf{"+talks[k]['label']+":}}")
+            out.append("\\vspace{-0.5cm}")
+            out.append("")
+            out.append("\cvitem{}{\small\hspace{-1cm}\\begin{longtable}{rp{0.3cm}p{15.8cm}}")
             out.append("%")
-            i=i-1
-        out.append("\end{longtable} }")
+
+            i = len(talks[k]['data'])
+            for p in talks[k]['data']:
+                if p["invited"]:
+                    mark="*"
+                else:
+                    mark=""
+                out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textit{"+p['title'].strip(".")+".}")
+                out.append("\\newline{}")
+                out.append(p['where'].strip(".")+", "+p['when'].strip(".")+".")
+                if p['more']:
+                    out.append("\\newline{}")
+                    out.append("\\textcolor{color1}{$\\bullet$} "+p['more'].strip(".")+".")
+                out.append("\\vspace{0.05cm}\\\\")
+                out.append("%")
+                i=i-1
+            out.append("\end{longtable} }")
 
     with open(filename,"w") as f: f.write("\n".join(out))
 
@@ -277,7 +279,9 @@ def metricspapers(papers,filename="metricspapers.tex"):
     print("\th-index:", hind_including, hind_excluding)
     out.append("Summary metrics reported using ADS and InSpire excluding [including] long-authorlist papers:")
     out.append("\\\\")
-    out.append("\\textcolor{mark_color}{\\textbf{Total number of citations}}: >"+str(roundto100(totalnumber_excluding))+" [>"+str(roundto100(totalnumber_including))+"]")
+    #out.append("\\textcolor{mark_color}{\\textbf{Total number of citations}}: >"+str(roundto100(totalnumber_excluding))+" [>"+str(roundto100(totalnumber_including))+"]")
+    out.append("\\textcolor{mark_color}{\\textbf{Total number of citations}}: "+str(int(totalnumber_excluding))+" ["+str(int(totalnumber_including))+"].")
+
     out.append(" --- ")
     out.append("\\textcolor{mark_color}{\\textbf{h-index}}: "+str(hind_excluding)+" ["+str(hind_including)+"].")
     out.append("\\\\")  
@@ -311,8 +315,11 @@ def metricstalks(talks,filename="metricstalks.tex"):
     plural = "s" if len(talks['lectures']['data'])>1 else ""
 
     out.append("(out of which \\textbf{"+str(np.sum(invited))+"} invited presentations),")
-    out.append("\\textbf{"+str(len(talks['lectures']['data']))+"} lecture"+plural+" at PhD schools,")
-    out.append("\\textbf{"+str(len(talks['outreach']['data']))+"} outreach talks.")
+    
+    if len(talks['lectures']['data'])>0:
+        out.append("\\textbf{"+str(len(talks['lectures']['data']))+"} lecture"+plural+" at PhD schools,")
+    if len(talks['outreach']['data'])>0:
+        out.append("\\textbf{"+str(len(talks['outreach']['data']))+"} outreach talks.")
 
     out.append("\end{tabular} }")
 
@@ -560,10 +567,8 @@ def replacekeys():
         f.write(publist)
 
 
-def pushtogit():
-    try:
-        comment = sys.argv[1]
-    except:
+def pushtogit(comment=None):
+    if comment is None:
         comment = "Generic update"
 
     print("Push to git:", comment)
@@ -600,8 +605,24 @@ def clean():
 
 if __name__ == "__main__":
 
-    connected = True
-    testing = False
+    pars = argparse.ArgumentParser(description='Update CV')
+    pars.add_argument('--connected', default=True, action='store_true', help='Connected mode')
+    pars.add_argument('--testing', default=False, action='store_true', help='Testing mode')
+    pars.add_argument('--comment', default=None, type=str, help='Commit comment')
+    pars.add_argument('--git', default=False, action='store_true', help='Publish to github')
+
+    args      = pars.parse_args()
+    connected = args.connected
+    testing   = args.testing
+    comment   = args.comment
+    git       = args.git
+
+    if testing:
+        print("Connected mode:", connected)
+        print("Testing mode:", testing)
+        print("Comment:", comment)
+        print("Publish to github:", git)
+
     if connected:
         # Set testing=True to avoid API limit
         papers = ads_citations(papers,testing=testing)
@@ -616,8 +637,8 @@ if __name__ == "__main__":
     replacekeys()
     builddocs()
     
-    if connected and not testing:
+    if git and connected and not testing:
         pushtogit()
-        #publishgithub()
+        publishgithub()
 
     clean()
