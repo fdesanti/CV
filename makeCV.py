@@ -45,7 +45,7 @@ def ads_citations(papers,testing=False):
 
     print('Get citations from ADS')
 
-    with open('/Users/fdesanti/reps/dotfiles/adstoken.txt') as f:
+    with open('/Users/fdesanti/tokens/adstoken.txt') as f:
         #ads.config.token = f.read()
         token = f.read()
 
@@ -80,8 +80,9 @@ def ads_citations(papers,testing=False):
                                     p['ads_citations'] = 0
                                 p['ads_found'] = q['bibcode']
 
-                            except:
-                                retry_time = 10 #req.getheaders()["retry-in"]
+                            except Exception as e:
+                                print(e)
+                                retry_time = 5 #req.getheaders()["retry-in"]
                                 print('ADS API error: retry in', retry_time, 's. -- '+p['ads'])
                                 time.sleep(retry_time)
                                 n_retries = n_retries + 1
@@ -282,7 +283,7 @@ def metricspapers(papers,filename="metricspapers.tex"):
     out.append("\\\\")  
     out.append("\\textcolor{mark_color}{\\textbf{Web links to list services}}:")
     out.append("\href{https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0000-2445-5729&sort=date+desc}{\\textsc{ADS}};")
-    out.append("\href{https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20F.De.Santi.1}{\\textsc{InSpire}};")
+    out.append("\href{https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20F.De.Santi.2}{\\textsc{InSpire}};")
     out.append("\href{https://arxiv.org/a/desanti_f_1.html}{\\textsc{arXiv}};")
     out.append("\href{https://orcid.org/0009-0000-2445-5729}{\\textsc{ORCID}}.")
 
@@ -609,7 +610,7 @@ if __name__ == "__main__":
         metricspapers(papers)
         metricstalks(talks)
         buildbib()
-        citationspreadsheet(papers)
+        #citationspreadsheet(papers)
 
     replacekeys()
     builddocs()

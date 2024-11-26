@@ -4,7 +4,7 @@ import sys,os
 import json
 
 papers      = {}
-submitted   = False
+submitted   = True
 published   = True
 proceedings = True
 others      = True
@@ -12,9 +12,9 @@ others      = True
 talks       = {}
 conferences = True
 posters     = True
-seminars    = False
-lectures    = False
-outreach    = False
+seminars    = True
+lectures    = True
+outreach    = True
 
 if submitted:
 
