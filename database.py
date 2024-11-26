@@ -57,16 +57,16 @@ if proceedings:
     papers['proceedings']['data'] = []
 
 
-    #papers['proceedings']['data'].append({
-    #    "title":    title,
-    #    "author":   author,
-    #    "journal":  journal,
-    #    "link":     link,
-    #    "arxiv":    "",
-    #    "ads":      "",
-    #    "inspire":  "",
-    #    "more":     ""
-    #    })
+    papers['proceedings']['data'].append({
+        "title":    "Seismic isolation systems for next-generation gravitational wave detectors",
+        "author":   "M. Razzano, F. Spada, G. Balestri, A. Basti, L. Bellizzi, F. De Santi, F. Fidecaro, A. Fiori, F. Frasconi, A. Gennai, L. Lucchesi, L. Muccillo, L. Orsini, M. Antonietta Palaia, L. Papalini, F. Pilo, P. Prosperi, M. Vacatello",
+        "journal":  "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
+        "link":     "https://www.sciencedirect.com/science/article/pii/S0168900224006016",
+        "arxiv":    "",
+        "ads":      "2024NIMPA106769675R",
+        "inspire":  "Razzano:2024wci",
+        "more":     ""
+        })
 
 
 if others:
