@@ -608,13 +608,13 @@ if __name__ == "__main__":
     pars = argparse.ArgumentParser(description='Update CV')
     pars.add_argument('--connected', default=True, action='store_true', help='Connected mode')
     pars.add_argument('--testing', default=False, action='store_true', help='Testing mode')
-    pars.add_argument('--comment', default=None, type=str, help='Commit comment')
+    pars.add_argument('--commit', default=None, type=str, help='Commit comment')
     pars.add_argument('--git', default=False, action='store_true', help='Publish to github')
 
     args      = pars.parse_args()
     connected = args.connected
     testing   = args.testing
-    comment   = args.comment
+    comment   = args.commit
     git       = args.git
 
     if testing:
