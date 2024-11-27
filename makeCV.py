@@ -153,10 +153,9 @@ def parsepapers(papers,filename="parsepapers.tex"):
     for k in ['submitted','published','proceedings']:
         i = len(papers[k]['data'])
 
-
         if i>=1:
             out.append("\\textcolor{color1}{\\textbf{"+papers[k]['label']+":}}")
-        #out.append("\\vspace{-0.5cm}")
+        out.append("\\vspace{-0.5cm}")
         out.append("\phantom{phantom text}")
         out.append("")
         out.append("\cvitem{}{\small\hspace{-1cm}\\begin{longtable}{rp{0.3cm}p{15.8cm}}")
