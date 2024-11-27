@@ -259,7 +259,7 @@ def metricspapers(papers,filename="metricspapers.tex"):
             press_release.append("press release" in p['more'])
 
     out.append("\\textbf{"+str(np.sum(press_release))+"} papers covered by press releases).")
-    out.append("\end{tabular} }")
+    out.append("\end{tabular} }\medskip")
 
     # including long-authorlist
     ads_citations = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in papers])
@@ -278,13 +278,13 @@ def metricspapers(papers,filename="metricspapers.tex"):
     print("\tTotal number of citations:", totalnumber_including, totalnumber_excluding)
     print("\th-index:", hind_including, hind_excluding)
     out.append("Summary metrics reported using ADS and InSpire excluding [including] long-authorlist papers:")
-    out.append("\\\\")
+    out.append("\\\\\medskip")
     #out.append("\\textcolor{mark_color}{\\textbf{Total number of citations}}: >"+str(roundto100(totalnumber_excluding))+" [>"+str(roundto100(totalnumber_including))+"]")
     out.append("\\textcolor{mark_color}{\\textbf{Total number of citations}}: "+str(int(totalnumber_excluding))+" ["+str(int(totalnumber_including))+"].")
 
     out.append(" --- ")
     out.append("\\textcolor{mark_color}{\\textbf{h-index}}: "+str(hind_excluding)+" ["+str(hind_including)+"].")
-    out.append("\\\\")  
+    out.append("\\\\\medskip")  
     out.append("\\textcolor{mark_color}{\\textbf{Web links to list services}}:")
     out.append("\href{https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0000-2445-5729&sort=date+desc}{\\textsc{ADS}};")
     out.append("\href{https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20F.De.Santi.2}{\\textsc{InSpire}};")

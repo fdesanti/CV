@@ -59,11 +59,14 @@
 \newcommand{\mytitle}[1]{\title{#1\vspace{0.15cm}}}
 
 \newcommand{\orcid}[1]{%
-  \href{https://orcid.org/#1}{\includegraphics[height=11pt]{ORCID_LOGO.png}\, #1}%
+  \href{https://orcid.org/#1}{\includegraphics[height=9pt, keepaspectratio]{ORCID_LOGO.png}\, \small #1}%
+}
+\newcommand{\github}[1]{%
+  \href{https://github.com/#1}{\includegraphics[height=9pt, keepaspectratio]{github-logo.png}\, #1}%
 }
 
 \firstname{Federico}
 \familyname{De Santi}
 
 
-\extrainfo{\centering \normalsize PhD student $\;\;\bullet\;\;$\orcid{0009-0000-2445-5729} $\;\;\bullet\;\;$ \today}
+\extrainfo{\centering \normalsize PhD student $\;\;\bullet\;\;$\orcid{0009-0000-2445-5729} $\;\;\bullet\;\;$ \github{fdesanti} $\;\;\bullet\;\;$ \today}
