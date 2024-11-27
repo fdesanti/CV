@@ -43,7 +43,7 @@ if published:
         "title":    "Deep learning to detect gravitational waves from binary close encounters: Fast parameter estimation using normalizing flows",
         "author":   "F. De Santi, M. Razzano, F. Fidecaro, L. Muccillo, L. Papalini, B. Patricelli",
         "journal":  "\prd 109 (2024) 102004",
-        "link":     "http://dx.doi.org/10.1093/mnrasl/sls018",
+        "link":     "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.102004",
         "arxiv":    "arXiv:2404.12028 [gr-qc]",
         "ads":      "2024PhRvD.109j2004D",
         "inspire":  "DeSanti:2024oap",
@@ -53,7 +53,8 @@ if published:
 
 if proceedings:
     papers['proceedings'] = {}
-    papers['proceedings']['label'] = 'White papers, long-authorlist reviews, conference proceedings, software papers, etc.'
+    #papers['proceedings']['label'] = 'White papers, long-authorlist reviews, conference proceedings, software papers, etc.'
+    papers['proceedings']['label'] = 'Conference proceedings'
     papers['proceedings']['data'] = []
 
 
@@ -91,13 +92,37 @@ if conferences:
     talks['conferences']['data'] = []
     
 
-    #talks['conferences']['data'].append({
-    #    "title":    title,
-    #    "where":    where,
-    #    "when":     when,
-    #    "invited":  False,
-    #    "more":     ""
-    #    })
+    talks['conferences']['data'].append({
+        "title":    "Deep learning to detect gravitational waves from binary close encounters: Fast parameter estimation with normalizing flows",
+        "where":    "LIGO-Virgo-KAGRA (LVK) Collaboration Meeting (Baton Rouge, USA)",
+        "when":     "11-14 Mar 2024",
+        "invited":  False,
+        "more":     "(online)"
+        })
+    
+    talks['conferences']['data'].append({
+        "title":    "Deep learning to detect gravitational waves from binary close encounters: Fast parameter estimation with normalizing flows",
+        "where":    "\href{https://indico.ego-gw.it/event/666/overview}{Integrated Activities for the High Energy Astrophysics Domain (AHEAD2020) Workshop} - European Gravitational Wave Observatory (EGO), Cascina",
+        "when":     "11-14 Mar 2024",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['conferences']['data'].append({
+        "title":    "GW from Binary Close Encounters: Analysis with Normalizing Flow",
+        "where":    "Virgo Week - European Gravitational Wave Observatory (EGO), Cascina",
+        "when":     "11-14 Mar 2024",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['conferences']['data'].append({
+        "title":    "GW from Binary Close Encounters: Analysis with Normalizing Flow",
+        "where":    "Burst (LVK) Collaboration Meeting",
+        "when":     "11-14 Mar 2024",
+        "invited":  False,
+        "more":     "online"
+        })
 
 if seminars:
     talks['seminars'] = {}
@@ -132,15 +157,16 @@ if posters:
 
     talks['posters']['data'].append({
         "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
-        "where":    "GraSP24 - Gravity Shape Pisa 2024 Conference",
+        "where":    "\href{https://agenda.infn.it/event/40101/overview}{GraSP24 - Gravity Shape Pisa 2024 Conference}",
         "when":     "23-25 Oct 2024",
+        "link":     "https://agenda.infn.it/event/40101/overview",
         "invited":  False,
         "more":     ""
         })
     
     talks['posters']['data'].append({
         "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
-        "where":    "GraviGammaNu Workshop 2024 (Bari)",
+        "where":    "\href{https://agenda.infn.it/event/38056/overview}{V GraviGammaNu Workshop 2024} (Bari)",
         "when":     "9-11 Oct 2024",
         "invited":  False,
         "more":     ""

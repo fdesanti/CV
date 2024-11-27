@@ -156,7 +156,8 @@ def parsepapers(papers,filename="parsepapers.tex"):
 
         if i>=1:
             out.append("\\textcolor{color1}{\\textbf{"+papers[k]['label']+":}}")
-        out.append("\\vspace{-0.5cm}")
+        #out.append("\\vspace{-0.5cm}")
+        out.append("\phantom{phantom text}")
         out.append("")
         out.append("\cvitem{}{\small\hspace{-1cm}\\begin{longtable}{rp{0.3cm}p{15.8cm}}")
         out.append("%")
@@ -213,9 +214,9 @@ def parsetalks(talks,filename="parsetalks.tex"):
                     mark="*"
                 else:
                     mark=""
-                out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textit{"+p['title'].strip(".")+".}")
+                out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textbf{"+p['title'].strip(".")+".}")
                 out.append("\\newline{}")
-                out.append(p['where'].strip(".")+", "+p['when'].strip(".")+".")
+                out.append("\\textit{" + p['where'].strip(".")+"}, "+p['when'].strip(".")+".")
                 if p['more']:
                     out.append("\\newline{}")
                     out.append("\\textcolor{color1}{$\\bullet$} "+p['more'].strip(".")+".")
