@@ -10,7 +10,7 @@ The only files one needs to change are `database.py` and `CV.tex`. Everything el
 - Touch the other things in the CV directly in `CV.tex`.
 
 The magic happes in `makeCV.py`. In particular:
-- Fetch citations from [ADS](https://ui.adsabs.harvard.edu/search/q=author%3A%22De%20Santi%2C%20Federico%22&sort=date%20desc%2C%20bibcode%20desc&p_=0) and [INSPIRE](https://inspirehep.net/authors/2851558?ui-citation-summary=true).
+- Fetch citations from [ADS](https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0000-2445-5729&sort=date%20desc%2C%20bibcode%20desc&p_=0) and [INSPIRE](https://inspirehep.net/authors/2851558?ui-citation-summary=true).
 - Put together a papers and talks list in tex format (`parsepapers.tex`  and `parsetalks.tex`).
 - Compute some basic indicators like h-index, etc (`metricspapers.tex`  and `metricstalks.tex`).
 - Fetch bibtex record from  [ADS](https://ui.adsabs.harvard.edu/search/q=author%3A%22De%20Santi%2C%20Federico%22&sort=date%20desc%2C%20bibcode%20desc&p_=0) (`publist.bib `).
