@@ -642,7 +642,7 @@ if __name__ == "__main__":
         try:
             publishgithub()
         except:
-            print("Error: cannot publish a github release")
+            print("[ERROR]: cannot publish a github release")
             pass
 
     clean()
