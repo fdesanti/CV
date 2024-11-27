@@ -639,6 +639,10 @@ if __name__ == "__main__":
     
     if git and connected and not testing:
         pushtogit()
-        publishgithub()
+        try:
+            publishgithub()
+        except:
+            print("Error: cannot publish a github release")
+            pass
 
     clean()
