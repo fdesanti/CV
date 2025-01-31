@@ -305,6 +305,7 @@ def metricspapers(papers,filename="metricspapers.tex"):
     out.append("\\textcolor{mark_color}{\\textbf{Web links to list services}}:")
     out.append("\href{https://ui.adsabs.harvard.edu/search/q=orcid%3A0009-0000-2445-5729&sort=date+desc}{\\textsc{ADS}};")
     out.append("\href{https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20F.De.Santi.2}{\\textsc{InSpire}};")
+    out.append("\href{https://scholar.google.com/citations?user=DCKKPBoAAAAJ&hl=it}{\\textsc{Google Scholar}};")
     out.append("\href{https://arxiv.org/a/desanti_f_1.html}{\\textsc{arXiv}};")
     out.append("\href{https://orcid.org/0009-0000-2445-5729}{\\textsc{ORCID}}.")
 
