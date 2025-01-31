@@ -14,8 +14,10 @@ import urllib.request
 #import ads
 #import copy
 #import skywalker
+
 from tqdm import tqdm
 from datetime import datetime
+from scholarly import scholarly
 from database import papers, talks
 from github_release import gh_release_create
 
@@ -144,6 +146,19 @@ def inspire_citations(papers,testing=False):
 
     return papers
 
+def google_scholar_citations(papers,testing=False):
+    print('Get citations from Google Scholar')
+    # Search for your author profile (replace "Your Name" with your real name)
+    author = next(scholarly.search_author("Federico De Santi University of Milano Bicocca"))
+    author = scholarly.fill(author)
+
+    citations = []
+    # Print citations for each paper
+    for pub in tqdm(author['publications']):
+        #print(f"{pub['bib']['title']}: {pub['num_citations']} citations")
+        citations.append(np.float64(pub['num_citations']))
+    return citations
+
 
 def parsepapers(papers,filename="parsepapers.tex"):
 
@@ -262,17 +277,19 @@ def metricspapers(papers,filename="metricspapers.tex"):
     out.append("\end{tabular} }\medskip")
 
     # including long-authorlist
-    ads_citations = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in papers])
+    ads_citations     = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in papers])
     inspire_citations = np.concatenate([[p['inspire_citations'] for p in papers[k]['data']] for k in papers])
-    max_citations_including = np.maximum(ads_citations,inspire_citations)
-    totalnumber_including = np.sum(max_citations_including)
+    scholar_citations = np.array(google_scholar_citations(papers))
+    max_citations_including = np.array([cit.max() for cit in [ads_citations, inspire_citations, scholar_citations]])
+    totalnumber_including = max([cit.sum() for cit in [ads_citations, inspire_citations, scholar_citations]])
     hind_including = hindex(max_citations_including)
 
     # excluding long-authorlist
     ads_citations = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in ['submitted','published']])
     inspire_citations = np.concatenate([[p['inspire_citations'] for p in papers[k]['data']] for k in ['submitted','published']])
-    max_citations_excluding = np.maximum(ads_citations,inspire_citations)
-    totalnumber_excluding = np.sum(max_citations_excluding)
+    scholar_citations = np.array(google_scholar_citations(papers))
+    max_citations_excluding = np.array([cit.max() for cit in [ads_citations, inspire_citations, scholar_citations]])
+    totalnumber_excluding = max([cit.sum() for cit in [ads_citations, inspire_citations, scholar_citations]])
     hind_excluding = hindex(max_citations_excluding)
 
     print("\tTotal number of citations:", totalnumber_including, totalnumber_excluding)
@@ -639,6 +656,7 @@ if __name__ == "__main__":
     
     if git and connected and not testing:
         pushtogit()
+        print("Pushed to git")
         try:
             publishgithub()
         except:
