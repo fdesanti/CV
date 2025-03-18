@@ -34,6 +34,7 @@ if submitted:
     #    })
 
 
+
 if published:
     papers['published'] = {}
     papers['published']['label'] = 'Papers in major peer-reviewed journals'
@@ -61,7 +62,7 @@ if proceedings:
     papers['proceedings']['data'].append({
         "title":    "Seismic isolation systems for next-generation gravitational wave detectors",
         "author":   "M. Razzano, F. Spada, G. Balestri, A. Basti, L. Bellizzi, F. De Santi, F. Fidecaro, A. Fiori, F. Frasconi, A. Gennai, L. Lucchesi, L. Muccillo, L. Orsini, M. Antonietta Palaia, L. Papalini, F. Pilo, P. Prosperi, M. Vacatello",
-        "journal":  "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
+        "journal":  "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment (2024)",
         "link":     "https://www.sciencedirect.com/science/article/pii/S0168900224006016",
         "arxiv":    "",
         "ads":      "2024NIMPA106769675R",
@@ -72,7 +73,7 @@ if proceedings:
 
 if others:
     papers['others'] = {}
-    papers['others']['label'] = ''
+    papers['others']['label'] = 'Collaboration and long author-list papers'
     papers['others']['data'] = []
 
     #papers['others']['data'].append({
@@ -85,6 +86,16 @@ if others:
     #    "inspire":  inspire,
     #    "more":     ""
     #    })
+    papers['others']['data'].append({
+        "title":    "The Science of The Einstein Telescope",
+        "author":   "A. Abac et al. and the Einstein Telescope Collaboration",
+        "journal":  "(2025)",
+        "link":     "https://arxiv.org/abs/2503.12263",
+        "arxiv":    "arXiv:2503.12263 [gr-qc]",
+        "ads":      "",
+        "inspire":  "Abac:2025saz",
+        "more":     ""
+        })
 
 if conferences:
     talks['conferences'] = {}

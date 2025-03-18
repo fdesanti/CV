@@ -165,7 +165,7 @@ def parsepapers(papers,filename="parsepapers.tex"):
     print('Parse papers from database')
 
     out=[]
-    for k in ['submitted','published','proceedings']:
+    for k in ['submitted','published','proceedings', 'others']:
         i = len(papers[k]['data'])
 
         if i>=1:
@@ -179,7 +179,10 @@ def parsepapers(papers,filename="parsepapers.tex"):
         for p in papers[k]['data']:
             out.append("\\textbf{"+str(i)+".} & & \\textit{"+p['title'].strip(".")+".}")
             out.append("\\newline{}")
-            out.append(p['author'].replace("F. De Santi","\\textbf{F. De Santi}").strip(".")+".")
+            if "F. De Santi" in p['author']:
+                out.append(p['author'].replace("F. De Santi","\\textbf{F. De Santi}").strip(".")+".")
+            else:
+                out.append(p['author'].strip(".")+".")
             out.append("\\newline{}")
             line=""
             if p['link']:
@@ -266,14 +269,15 @@ def metricspapers(papers,filename="metricspapers.tex"):
                 raise ValueError("Looks like you're not an author:", p['title'])
             first_author.append( p['author'].split("F. De Santi")[0]=="" )
 
-    out.append("(out of which \\textbf{"+str(np.sum(first_author))+"} first-authored papers and")
+    out.append("(out of which \\textbf{"+str(np.sum(first_author))+"} first-authored papers")
 
     press_release = []
-    for k in ['submitted','published','proceedings']:
+    for k in ['submitted','published','proceedings', 'others']:
         for p in papers[k]['data']:
             press_release.append("press release" in p['more'])
-
-    out.append("\\textbf{"+str(np.sum(press_release))+"} papers covered by press releases).")
+    if np.sum(press_release)>0:
+        out.append(" and \\textbf{"+str(np.sum(press_release))+"} papers covered by press releases")
+    out.append(").")
     out.append("\end{tabular} }\medskip")
 
     # including long-authorlist
@@ -654,10 +658,17 @@ if __name__ == "__main__":
 
     replacekeys()
     builddocs()
+
+    shutil.copy2("CV.pdf", "FedericoDeSanti_fullCV.pdf")
+    shutil.copy2("CVshort.pdf", "FedericoDeSanti_shortCV.pdf")
+    shutil.copy2("publist.pdf", "FedericoDeSanti_publist.pdf")
+    shutil.copy2("publist.bib", "FedericoDeSanti_publist.bib")
+    shutil.copy2("talklist.pdf", "FedericoDeSanti_talklist.pdf")
+
+    if comment is not None:
+        pushtogit(comment)
     
     if git and connected and not testing:
-        pushtogit()
-        print("Pushed to git")
         try:
             publishgithub()
         except:
