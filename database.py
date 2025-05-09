@@ -22,16 +22,16 @@ if submitted:
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
  
-    #papers['submitted']['data'].append({
-    #    "title":    "",
-    #    "author":   "",
-    #    "journal":  "",
-    #    "link":     "",
-    #    "arxiv":    "",
-    #    "ads":      "",
-    #    "inspire":  "",
-    #    "more":     ""
-    #    })
+    papers['submitted']['data'].append({
+       "title":    "Can Transformers help us perform parameter estimation of overlapping signals in gravitational wave detectors?",
+       "author":   "L. Papalini, F. De Santi, M. Razzano, I. S. Heng, E. Cuoco",
+       "journal":  "",
+       "link":     "",
+       "arxiv":    "arXiv:2505.02773 [gr-qc]",
+       "ads":      "2025arXiv250502773P",
+       "inspire":  "Papalini:2025exy",
+       "more":     ""
+       })
 
 
 
@@ -102,7 +102,14 @@ if conferences:
     talks['conferences']['label'] = 'Talks at conferences'
     talks['conferences']['data'] = []
     
-
+    talks['conferences']['data'].append({
+        "title":    "Machine Learning and Simulation Based Inference for ET \& LISA",
+        "where":    "\href{https://davidegerosa.com/thuram/}{THURAM 2025} - GSSI, L'Aquila (Italy)",
+        "when":     "7-9 May 2025",
+        "invited":  True,
+        "more":     ""
+        })
+    
     talks['conferences']['data'].append({
         "title":    "Deep learning to detect gravitational waves from binary close encounters: Fast parameter estimation with normalizing flows",
         "where":    "LIGO-Virgo-KAGRA (LVK) Collaboration Meeting (Baton Rouge, USA)",
