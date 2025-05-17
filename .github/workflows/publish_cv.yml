@@ -1,4 +1,4 @@
-name: Generate CV PDFs
+name: Generate and Release CV
 
 on:
   push:
@@ -6,40 +6,39 @@ on:
       - master
 
 jobs:
-  build-cv:
+  build-and-release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Install scholarly
         run: pip install scholarly
 
-      - name: Run CV generation script
+      - name: Run makeCV script
         run: python makeCV.py
 
-      - name: Upload CV folder as artifact
-        uses: actions/upload-artifact@v4
+      - name: Zip the CV folder
+        run: zip -r CV.zip CV/
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y%m%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: generated-cv
-          path: CV
-
-      - name: Deploy CV folder to cv-artifacts branch
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          git fetch
-          git switch --orphan cv-artifacts
-          git rm -rf .
-
-          cp -r CV/* .
-          git add .
-          git commit -m "Update CV PDFs"
-          git push -f origin cv-artifactss
+          tag_name: cv-${{ steps.date.outputs.date }}
+          name: CV Release ${{ steps.date.outputs.date }}
+          body: |
+            Automated CV generation and release.
+          files: |
+            CV.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
