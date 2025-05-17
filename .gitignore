@@ -32,13 +32,6 @@ _minted*
 *converted-to.pdf
 
 #### Actual paper
-CV.pdf
-publist.pdf
-talklist.pdf
-CVshort.pdf
-transcript.pdf
-DavideGerosa_fullCV.pdf
-DavideGerosa_publist.bib
-DavideGerosa_publist.pdf
-DavideGerosa_shortCV.pdf
-DavideGerosa_talklist.pdf
+CV/*
+*.pdf
+GITHUB_TOKEN

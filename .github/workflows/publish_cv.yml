@@ -3,7 +3,7 @@ name: Generate and Release CV
 on:
   push:
     branches:
-      - master
+      - none
 
 jobs:
   build-and-release:
