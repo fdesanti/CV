@@ -149,9 +149,10 @@ def inspire_citations(papers,testing=False):
 def google_scholar_citations(papers,testing=False):
     print('Get citations from Google Scholar')
     # Search for your author profile (replace "Your Name" with your real name)
-    author = next(scholarly.search_author("Federico De Santi University of Milano Bicocca"))
-    author = scholarly.fill(author)
-
+    #author = next(scholarly.search_author("Federico De Santi Bicocca"))
+    #author = scholarly.fill(author)
+    MY_AUTHOR_ID = "O45Yt4AAAAAJ"  
+    author = scholarly.fill(scholarly.search_author_id(MY_AUTHOR_ID))
     citations = []
     # Print citations for each paper
     for pub in tqdm(author['publications']):
@@ -659,11 +660,13 @@ if __name__ == "__main__":
     replacekeys()
     builddocs()
 
-    shutil.copy2("CV.pdf", "FedericoDeSanti_fullCV.pdf")
-    shutil.copy2("CVshort.pdf", "FedericoDeSanti_shortCV.pdf")
-    shutil.copy2("publist.pdf", "FedericoDeSanti_publist.pdf")
-    shutil.copy2("publist.bib", "FedericoDeSanti_publist.bib")
-    shutil.copy2("talklist.pdf", "FedericoDeSanti_talklist.pdf")
+    os.makedirs("CV", exist_ok=True)
+
+    shutil.copy2("CV.pdf", "CV/FedericoDeSanti_fullCV.pdf")
+    shutil.copy2("CVshort.pdf", "CV/FedericoDeSanti_shortCV.pdf")
+    shutil.copy2("publist.pdf", "CV/FedericoDeSanti_publist.pdf")
+    shutil.copy2("publist.bib", "CV/FedericoDeSanti_publist.bib")
+    shutil.copy2("talklist.pdf", "CV/FedericoDeSanti_talklist.pdf")
 
     if comment is not None:
         pushtogit(comment)

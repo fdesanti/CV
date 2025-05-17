@@ -101,6 +101,14 @@ if conferences:
     talks['conferences'] = {}
     talks['conferences']['label'] = 'Talks at conferences'
     talks['conferences']['data'] = []
+
+    talks['conferences']['data'].append({
+        "title":    "Inferring Population Properties of Galactic Binaries in LISA with Simulation Based Inference",
+        "where":    "\href{https://uofgravity.github.io/aislands/}{AIslands 2025} - Rothesay, Isle of Bute (Scotland)",
+        "when":     "13-15 May 2025",
+        "invited":  False,
+        "more":     ""
+        })
     
     talks['conferences']['data'].append({
         "title":    "Machine Learning and Simulation Based Inference for ET \& LISA",
