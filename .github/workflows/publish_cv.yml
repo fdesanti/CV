@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install scholarly
-        run: pip install scholarly
+        run: pip install scholarly gspread
 
       - name: Run makeCV script
         run: python makeCV.py
