@@ -1,0 +1,45 @@
+name: Generate CV PDFs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-cv:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install scholarly
+
+      - name: Run CV generation script
+        run: python makeCV.py
+
+      - name: Upload CV folder as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-cv
+          path: CV
+
+      - name: Deploy CV folder to cv-artifacts branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch
+          git switch --orphan cv-artifacts
+          git rm -rf .
+
+          cp -r CV/* .
+          git add .
+          git commit -m "Update CV PDFs"
+          git push -f origin cv-artifacts
