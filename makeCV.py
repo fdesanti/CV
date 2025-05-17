@@ -47,10 +47,13 @@ def checkinternet():
 def ads_citations(papers,testing=False):
 
     print('Get citations from ADS')
-
-    with open('/Users/fdesanti/tokens/adstoken.txt') as f:
-        #ads.config.token = f.read()
-        token = f.read()
+    
+    try:
+        token = os.getenv("ASD_TOKEN")  # if passed via env
+    except:
+        with open('/Users/fdesanti/tokens/adstoken.txt') as f:
+            #ads.config.token = f.read()
+            token = f.read()
 
     tot = len(np.concatenate([papers[k]['data'] for k in papers]))
     with tqdm(total=tot) as pbar:
