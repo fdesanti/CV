@@ -19,7 +19,7 @@ from tqdm import tqdm
 from datetime import datetime
 from scholarly import scholarly
 from database import papers, talks
-from github_release import gh_release_create
+#from github_release import gh_release_create
 
 #import ssl
 #ssl._create_default_https_context = ssl._create_unverified_context
@@ -600,23 +600,23 @@ def pushtogit(comment=None):
     os.system("git commit -m '"+comment+"'")
     os.system("git push")
 
-def publishgithub():
-    date = datetime.now().strftime("%Y-%m-%d-%H-%M")
-    print("Publish github release:", date)
+# def publishgithub():
+#     date = datetime.now().strftime("%Y-%m-%d-%H-%M")
+#     print("Publish github release:", date)
 
-    shutil.copy2("CV.pdf", "FedericoDeSanti_fullCV.pdf")
-    shutil.copy2("CVshort.pdf", "FedericoDeSanti_shortCV.pdf")
-    shutil.copy2("publist.pdf", "FedericoDeSanti_publist.pdf")
-    shutil.copy2("publist.bib", "FedericoDeSanti_publist.bib")
-    shutil.copy2("talklist.pdf", "FedericoDeSanti_talklist.pdf")
+#     shutil.copy2("CV.pdf", "FedericoDeSanti_fullCV.pdf")
+#     shutil.copy2("CVshort.pdf", "FedericoDeSanti_shortCV.pdf")
+#     shutil.copy2("publist.pdf", "FedericoDeSanti_publist.pdf")
+#     shutil.copy2("publist.bib", "FedericoDeSanti_publist.bib")
+#     shutil.copy2("talklist.pdf", "FedericoDeSanti_talklist.pdf")
 
-    # Create a github token, see:
-    # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-    # Make sure a GITHUB_TOKEN variable is part of the environment variables
+#     # Create a github token, see:
+#     # https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+#     # Make sure a GITHUB_TOKEN variable is part of the environment variables
 
-    gh_release_create("fdesanti/CV", date, publish=True, name=date, asset_pattern="FedericoDeSanti_*")
+#     gh_release_create("fdesanti/CV", date, publish=True, name=date, asset_pattern="FedericoDeSanti_*")
 
-    os.system("git pull") # This is to get new tags from github
+#     os.system("git pull") # This is to get new tags from github
 
 
 def clean():
@@ -671,11 +671,11 @@ if __name__ == "__main__":
     if comment is not None:
         pushtogit(comment)
     
-    if git and connected and not testing:
-        try:
-            publishgithub()
-        except:
-            print("[ERROR]: cannot publish a github release")
-            pass
+    # if git and connected and not testing:
+    #     try:
+    #         publishgithub()
+    #     except:
+    #         print("[ERROR]: cannot publish a github release")
+    #         pass
 
     clean()
