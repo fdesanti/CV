@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install python packages
-        run: pip install scholarly gspread numpy tqdm html json requests
+        run: pip install scholarly gspread numpy tqdm json requests
 
       - name: Run makeCV script
         run: python makeCV.py
