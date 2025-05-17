@@ -2,10 +2,10 @@
 
 Personal CV based on this [template](https://github.com/dgerosa/CV) made by Davide Gerosa.
 
-- [**Full CV**](https://github.com/dgerosa/CV/releases/latest/download/FedericoDeSanti_fullCV.pdf)
-- [**Short CV**](https://github.com/dgerosa/CV/releases/latest/download/FedericoDeSanti_shortCV.pdf)
-- [**Publication list**](https://github.com/dgerosa/CV/releases/latest/download/FedericoDeSanti_publist.pdf)
-- [**Talk list**](https://github.com/dgerosa/CV/releases/latest/download/FedericoDeSanti_talklist.pdf)
+- [**Full CV**](https://github.com/fdesanti/CV/releases/latest/download/FedericoDeSanti_fullCV.pdf)
+- [**Short CV**](https://github.com/fdesanti/CV/releases/latest/download/FedericoDeSanti_shortCV.pdf)
+- [**Publication list**](https://github.com/fdesanti/CV/releases/latest/download/FedericoDeSanti_publist.pdf)
+- [**Talk list**](https://github.com/fdesanti/CV/releases/latest/download/FedericoDeSanti_talklist.pdf)
 
 ## How to use  
 The only files one needs to change are `database.py` and `CV.tex`. Everything else is machine-generated.
