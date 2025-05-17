@@ -21,6 +21,9 @@ jobs:
       - name: Install python packages
         run: pip install scholarly gspread numpy tqdm 
 
+      - name: Install LaTeX (TeX Live)
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra
+
       - name: Run makeCV script
         run: python makeCV.py
         env:
