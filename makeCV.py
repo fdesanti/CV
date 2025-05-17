@@ -47,10 +47,10 @@ def checkinternet():
 def ads_citations(papers,testing=False):
 
     print('Get citations from ADS')
-    
-    try:
-        token = os.getenv("ASD_TOKEN")  # if passed via env
-    except:
+
+    token = os.getenv("ADS_TOKEN")  # if passed via env
+        
+    if token is None:
         with open('/Users/fdesanti/tokens/adstoken.txt') as f:
             #ads.config.token = f.read()
             token = f.read()
@@ -673,6 +673,12 @@ if __name__ == "__main__":
 
     if comment is not None:
         pushtogit(comment)
+
+        try:
+            os.system("python github_release.py")
+        except:
+            print("[ERROR]: cannot publish a github release")
+            pass
     
     # if git and connected and not testing:
     #     try:
