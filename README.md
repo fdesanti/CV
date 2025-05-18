@@ -31,8 +31,8 @@ The magic happes in `makeCV.py`. In particular:
 After changes, just type in shell
 
 ```shell
-python makeCV.py --commit "commit messsage" --git
+python makeCV.py --commit "commit messsage"
 ```
 
-the "--git" options pushes to the repository and creates the release.
-You can omit if you just want to recompile the pdflatex
+the "--commit" option creates a commit & pushes to the repository and then creates the release.  
+You can omit if you just want to recompile locally the pdflatex
