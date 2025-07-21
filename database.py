@@ -103,6 +103,14 @@ if conferences:
     talks['conferences']['data'] = []
 
     talks['conferences']['data'].append({
+        "title":    "Inferring Population Properties of Galactic Binaries in LISA with Simulation Based Inference",
+        "where":    "\href{https://iop.eventsair.com/gr24-amaldi16/}{GR/Amaldi 2025} - Glasgow (Scotland)",
+        "when":     "14-18 July 2025",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['conferences']['data'].append({
         "title":    "Transformers plus Normalizing Flows for parameter estimation of overlapping gravitational waves in next-generation detectors",
         "where":    "\href{https://agenda.infn.it/event/43565/overview/}{EuCAIFCon 2025} - Cagliari, Italy",
         "when":     "16-20 June 2025",
