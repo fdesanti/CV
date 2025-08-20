@@ -169,7 +169,7 @@ def parsepapers(papers,filename="parsepapers.tex"):
     print('Parse papers from database')
 
     out=[]
-    for k in ['submitted','published','proceedings', 'others']:
+    for k in ['submitted','published','others', 'proceedings']:
         i = len(papers[k]['data'])
 
         if i>=1:
