@@ -124,6 +124,14 @@ if conferences:
     talks['conferences']['data'] = []
 
     talks['conferences']['data'].append({
+        "title":    "Inferring Population properties of Galactic binaries from the Confusion Noise with SBI",
+        "where":    "\href{https://sites.google.com/unimib.it/sigrav2025/home?authuser=0}{SIGRAV 2025} - Milan (Italy)",
+        "when":     "8-12 September 2025",
+        "invited":  False,
+        "more":     ""
+        })
+    
+    talks['conferences']['data'].append({
         "title":    "Inferring Population Properties of Galactic Binaries in LISA with Simulation Based Inference",
         "where":    "\href{https://iop.eventsair.com/gr24-amaldi16/}{GR/Amaldi 2025} - Glasgow (Scotland)",
         "when":     "14-18 July 2025",
