@@ -42,8 +42,8 @@ if published:
     papers['published']['data'].append({
         "title":    "Can Transformers help us perform parameter estimation of overlapping signals in gravitational wave detectors?",
         "author":   "L. Papalini, F. De Santi, M. Razzano, I. S. Heng, E. Cuoco",
-        "journal":  "\cqg (2025)",
-        "link":     "http://iopscience.iop.org/article/10.1088/1361-6382/adfd33",
+        "journal":  "\cqg 42, 185012 (2025)",
+        "link":     "https://iopscience.iop.org/article/10.1088/1361-6382/adfd33",
         "arxiv":    "arXiv:2505.02773 [gr-qc]",
         "ads":      "2025arXiv250502773P",
         "inspire":  "Papalini:2025exy",
