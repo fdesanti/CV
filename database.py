@@ -28,7 +28,7 @@ if submitted:
     #    "journal":  "",
     #    "link":     "",
     #    "arxiv":    "arXiv:2505.02773 [gr-qc]",
-    #    "ads":      "2025arXiv250502773P",
+    #    "ads":      "2025CQGra..42r5012P",
     #    "inspire":  "Papalini:2025exy",
     #    "more":     ""
     #    })
@@ -45,7 +45,7 @@ if published:
         "journal":  "\cqg 42, 185012 (2025)",
         "link":     "https://iopscience.iop.org/article/10.1088/1361-6382/adfd33",
         "arxiv":    "arXiv:2505.02773 [gr-qc]",
-        "ads":      "2025arXiv250502773P",
+        "ads":      "2025CQGra..42r5012P",
         "inspire":  "Papalini:2025exy",
         "more":     ""
         })
