@@ -235,6 +235,15 @@ if posters:
     talks['posters']['data'] = []
 
     talks['posters']['data'].append({
+        "title":    "Population Inference of Galactic binaries from LISA's stochastic foreground",
+        "where":    "\href{https://indico.global/event/16100/timetable/?view=standard}{BiCoQ Poster Festival 2025}",
+        "when":     "9 Dec. 2025",
+        "link":     "https://indico.global/event/16100/timetable/?view=standard",
+        "invited":  False,
+        "more":     ""
+        })
+
+    talks['posters']['data'].append({
         "title":    "HYPERION: a Normalizing Flow based pipeline for the rapid parameter estimation of eccentric Close Encounters",
         "where":    "\href{https://agenda.infn.it/event/40101/overview}{GraSP24 - Gravity Shape Pisa 2024 Conference}",
         "when":     "23-25 Oct. 2024",
