@@ -124,6 +124,14 @@ if conferences:
     talks['conferences']['data'] = []
 
     talks['conferences']['data'].append({
+        "title":    "Inferring Population properties of galactic binaries with Simulation Based Inference",
+        "where":    "\href{https://www.astro.unige.ch/people/melanie.habouzit/LISA2025/index.php}{LISA AstroWG Meeting} - Geneve (Switzerland)",
+        "when":     "16-18 December 2025",
+        "invited":  False,
+        "more":     ""
+        })
+
+    talks['conferences']['data'].append({
         "title":    "Inferring Population properties of Galactic binaries from the Confusion Noise with SBI",
         "where":    "\href{https://sites.google.com/unimib.it/sigrav2025/home?authuser=0}{SIGRAV 2025} - Milan (Italy)",
         "when":     "8-12 September 2025",
