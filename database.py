@@ -125,6 +125,14 @@ if conferences:
 
     talks['conferences']['data'].append({
         "title":    "Inferring the Population properties of Galactic binaries from LISA'S stochastic foreground",
+        "where":    "\href{https://sites.google.com/unimib.it/gwfreeride/}{GWFreeride 2026} - Sexten (Italy)",
+        "when":     "26-30 January 2026",
+        "invited":  False,
+        "more":     ""
+        })
+
+    talks['conferences']['data'].append({
+        "title":    "Inferring the Population properties of Galactic binaries from LISA'S stochastic foreground",
         "where":    "\href{https://agenda.infn.it/event/49512/}{TEONGRAV Workshop 2026} - Pisa (Italy)",
         "when":     "14-16 January 2026",
         "invited":  False,
