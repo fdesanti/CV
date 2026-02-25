@@ -22,16 +22,16 @@ if submitted:
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
  
-    # papers['submitted']['data'].append({
-    #    "title":    "Can Transformers help us perform parameter estimation of overlapping signals in gravitational wave detectors?",
-    #    "author":   "L. Papalini, F. De Santi, M. Razzano, I. S. Heng, E. Cuoco",
-    #    "journal":  "",
-    #    "link":     "",
-    #    "arxiv":    "arXiv:2505.02773 [gr-qc]",
-    #    "ads":      "2025CQGra..42r5012P",
-    #    "inspire":  "Papalini:2025exy",
-    #    "more":     ""
-    #    })
+    papers['submitted']['data'].append({
+       "title":    "Inferring the population properties of galactic binaries from LISA's stochastic foreground",
+       "author":   "F. De Santi, A. Santini, A. Toubiana, N. Karnesis, D. Gerosa",
+       "journal":  "(2026)",
+       "link":     "",
+       "arxiv":    "arXiv:2602.18560 [astro-ph.HE]",
+       "ads":      "2026arXiv260218560D",
+       "inspire":  "DeSanti:2026xhs",
+       "more":     ""
+       })
 
 
 if published:
