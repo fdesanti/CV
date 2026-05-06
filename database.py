@@ -22,22 +22,33 @@ if submitted:
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
  
-    papers['submitted']['data'].append({
-       "title":    "Inferring the population properties of galactic binaries from LISA's stochastic foreground",
-       "author":   "F. De Santi, A. Santini, A. Toubiana, N. Karnesis, D. Gerosa",
-       "journal":  "(2026)",
-       "link":     "",
-       "arxiv":    "arXiv:2602.18560 [astro-ph.HE]",
-       "ads":      "2026arXiv260218560D",
-       "inspire":  "DeSanti:2026xhs",
-       "more":     ""
-       })
+    # papers['submitted']['data'].append({
+    #    "title":    "Inferring the population properties of galactic binaries from LISA's stochastic foreground",
+    #    "author":   "F. De Santi, A. Santini, A. Toubiana, N. Karnesis, D. Gerosa",
+    #    "journal":  "(2026)",
+    #    "link":     "",
+    #    "arxiv":    "arXiv:2602.18560 [astro-ph.HE]",
+    #    "ads":      "2026arXiv260218560D",
+    #    "inspire":  "DeSanti:2026xhs",
+    #    "more":     ""
+    #    })
 
 
 if published:
     papers['published'] = {}
     papers['published']['label'] = 'Papers in major peer-reviewed journals'
     papers['published']['data'] = []
+
+    papers['published']['data'].append({
+        "title":    "Inferring the population properties of galactic binaries from LISA's stochastic foreground",
+        "author":   "F. De Santi, A. Santini, A. Toubiana, N. Karnesis, D. Gerosa",
+        "journal":  "Accepted for publication in PRD",
+        "link":     "https://journals.aps.org/prd/accepted/10.1103/9lc5-vgw5",
+        "arxiv":    "arXiv:2602.18560 [astro-ph.HE]",
+        "ads":      "2026arXiv260218560D",
+        "inspire":  "DeSanti:2026xhs",
+        "more":     ""
+        })
 
     papers['published']['data'].append({
         "title":    "Can Transformers help us perform parameter estimation of overlapping signals in gravitational wave detectors?",
@@ -122,6 +133,14 @@ if conferences:
     talks['conferences'] = {}
     talks['conferences']['label'] = 'Talks at conferences'
     talks['conferences']['data'] = []
+
+    talks['conferences']['data'].append({
+        "title":    "What Lies Beneath the Noise: Inferring Galactic Binary Populations in LISA with SBI",
+        "where":    "\href{https://indico.cern.ch/event/1640502/}{AI for Gravitational Waves Workshop} - CERN (Geneve)",
+        "when":     "5-8 May 2026",
+        "invited":  False,
+        "more":     ""
+        })
 
     talks['conferences']['data'].append({
         "title":    "Inferring the Population properties of Galactic binaries from LISA'S stochastic foreground",
