@@ -507,17 +507,40 @@ def citationspreadsheet(papers):
     worksheet.update("A2",np.expand_dims(np.array(singlearxiv),1).tolist())
     worksheet.update("B2",np.expand_dims(np.array(journalcount),1).tolist())
 
+def latexbuild(filename):
+    os.system(f'pdflatex {filename}.tex')
+    os.system(f'bibtex {filename}')
+    os.system(f'pdflatex {filename}.tex')
+    os.system(f'pdflatex {filename}.tex')
 
+# def builddocs():
+
+#     print("Update CV")
+#     pdflatex("CV")
+
+#     print("Update publist")
+#     pdflatex("publist")
+
+#     print("Update talklist")
+#     pdflatex("talklist")
+
+#     print("Update CVshort")
+#     with open('CV.tex', 'r') as f:
+#         CV = f.read()
+#     CVshort = "%".join(CV.split("%mark_CVshort")[::2])
+#     with open('CVshort.tex', 'w') as f:
+#         f.write(CVshort)
+#     pdflatex("CVshort")
 def builddocs():
 
     print("Update CV")
-    pdflatex("CV")
+    latexbuild("CV")
 
     print("Update publist")
-    pdflatex("publist")
+    latexbuild("publist")
 
     print("Update talklist")
-    pdflatex("talklist")
+    latexbuild("talklist")
 
     print("Update CVshort")
     with open('CV.tex', 'r') as f:
@@ -525,7 +548,7 @@ def builddocs():
     CVshort = "%".join(CV.split("%mark_CVshort")[::2])
     with open('CVshort.tex', 'w') as f:
         f.write(CVshort)
-    pdflatex("CVshort")
+    latexbuild("CVshort")
 
 
 def buildbib():
