@@ -121,8 +121,8 @@ if others:
     papers['others']['data'].append({
         "title":    "The Science of The Einstein Telescope",
         "author":   "A. Abac et al. and the Einstein Telescope Collaboration",
-        "journal":  "(2025)",
-        "link":     "https://arxiv.org/abs/2503.12263",
+        "journal":  "JCAP 03 (2026) 081",
+        "link":     "https://iopscience.iop.org/article/10.1088/1475-7516/2026/03/081",
         "arxiv":    "arXiv:2503.12263 [gr-qc]",
         "ads":      "",
         "inspire":  "Abac:2025saz",
