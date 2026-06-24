@@ -1,7 +1,6 @@
 import os
 import sys
 import time
-import html
 import json
 import shutil
 import gspread
@@ -569,11 +568,16 @@ def buildbib():
             for p in papers[k]['data']:
 
                 if  p['ads_found'] and p['ads_found'] not in stored:
-                    with urllib.request.urlopen("https://ui.adsabs.harvard.edu/abs/"+p['ads_found']+"/exportcitation") as f:
-                        bib = f.read()
-                    bib=bib.decode()
-                    bib = "@"+list(filter(lambda x:'adsnote' in x, bib.split("@")))[0].split("</textarea>")[0]
-                    bib=html.unescape(bib)
+                    token = os.getenv("ADS_TOKEN")
+                    if token is None:
+                        with open('/Users/fdesanti/tokens/adstoken.txt') as f:
+                            token = f.read().strip()
+                    req = urllib.request.Request(
+                        "https://api.adsabs.harvard.edu/v1/export/bibtex/"+p['ads_found'],
+                        headers={'Authorization': 'Bearer ' + token}
+                    )
+                    with urllib.request.urlopen(req) as f:
+                        bib = f.read().decode()
 
                     if "journal =" in bib:
                         j  = bib.split("journal =")[1].split("}")[0].split("{")[1]
