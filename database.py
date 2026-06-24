@@ -244,6 +244,14 @@ if seminars:
     talks['seminars']['data'] = []
 
     talks['seminars']['data'].append({
+        "title":    "Simulation Based Inference applications to LISA and Einstein Telescope",
+        "where":    "The University of Nottingham, School of Mathematical Sciences",
+        "when":     "4 June 2026",
+        "invited":  True,
+        "more":     ""
+        })
+
+    talks['seminars']['data'].append({
         "title":    "Probabilistic Machine Learning for the study of burst sources",
         "where":    "Virgo Pisa Internal Workshop (INFN Pisa)",
         "when":     "22-23 May 2024",
