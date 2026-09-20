@@ -3,18 +3,21 @@ import sys,os
 
 import json
 
+PAPERS = True
+TALKS = True
+
 papers      = {}
-submitted   = True
-published   = True
-proceedings = True
-others      = True
+submitted   = PAPERS
+published   = PAPERS
+proceedings = PAPERS
+others      = PAPERS
 
 talks       = {}
-conferences = True
-posters     = True
-seminars    = True
-lectures    = True
-outreach    = True
+conferences = TALKS
+posters     = TALKS
+seminars    = TALKS
+lectures    = TALKS
+outreach    = TALKS
 
 if submitted:
 
