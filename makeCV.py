@@ -23,6 +23,10 @@ from database import papers, talks, SHOW_PAPERS, SHOW_TALKS
 #import ssl
 #ssl._create_default_https_context = ssl._create_unverified_context
 
+def stripdot(s):
+    # trailing whitespace would otherwise shield the final period from strip(".")
+    return s.strip().strip(".").strip()
+
 def hindex(citations):
     return sum(x >= i + 1 for i, x in enumerate(sorted(  list(citations), reverse=True)))
 
@@ -168,11 +172,13 @@ def parsepapers(papers,filename="parsepapers.tex"):
     print('Parse papers from database')
 
     out=[]
-    for k in ['submitted','published','others', 'proceedings']:
+    for k in ['inprep','submitted','published','others', 'proceedings']:
         i = len(papers[k]['data'])
 
-        if i>=1:
-            out.append("\\textcolor{color1}{\\textbf{"+papers[k]['label']+":}}")
+        if i<1:
+            continue
+
+        out.append("\\textcolor{color1}{\\textbf{"+papers[k]['label']+":}}")
         out.append("\\vspace{-0.5cm}")
         out.append("\phantom{phantom text}")
         out.append("")
@@ -180,29 +186,29 @@ def parsepapers(papers,filename="parsepapers.tex"):
         out.append("%")
 
         for p in papers[k]['data']:
-            out.append("\\textbf{"+str(i)+".} & & \\textit{"+p['title'].strip(".")+".}")
+            out.append("\\textbf{"+str(i)+".} & & \\textit{"+stripdot(p['title'])+".}")
             out.append("\\newline{}")
             if "F. De Santi" in p['author']:
-                out.append(p['author'].replace("F. De Santi","\\textbf{F. De Santi}").strip(".")+".")
+                out.append(stripdot(p['author'].replace("F. De Santi","\\textbf{F. De Santi}"))+".")
             else:
-                out.append(p['author'].strip(".")+".")
+                out.append(stripdot(p['author'])+".")
             out.append("\\newline{}")
             line=""
             if p['link']:
                 line +="\href{"+p['link']+"}"
             if p['journal']:
-                line+="{"+p['journal'].strip(".")+"}. "
+                line+="{"+stripdot(p['journal'])+"}. "
             if 'erratum' in p.keys():
                 if p['errlink']:
                     line +="\href{"+p['errlink']+"}"
                 if p['erratum']:
-                    line+="{Erratum: "+p['erratum'].strip(".")+"}. "
+                    line+="{Erratum: "+stripdot(p['erratum'])+"}. "
             if p['arxiv']:
-                line+="\href{https://arxiv.org/abs/"+p['arxiv'].split(":")[1].split(" ")[0]+"}{"+p['arxiv'].strip(".")+".}"
+                line+="\href{https://arxiv.org/abs/"+p['arxiv'].split(":")[1].split(" ")[0]+"}{"+stripdot(p['arxiv'])+".}"
             out.append(line)
             if p['more']:
                 out.append("\\newline{}")
-                out.append("\\textcolor{color1}{$\\bullet$} "+p['more'].strip(".")+".")
+                out.append("\\textcolor{color1}{$\\bullet$} "+stripdot(p['more'])+".")
             out.append("\\vspace{0.09cm}\\\\")
             out.append("%")
             i=i-1
@@ -234,12 +240,12 @@ def parsetalks(talks,filename="parsetalks.tex"):
                     mark="*"
                 else:
                     mark=""
-                out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textbf{"+p['title'].strip(".")+".}")
+                out.append("\\textbf{"+str(i)+".} & "+mark+" & \\textbf{"+stripdot(p['title'])+".}")
                 out.append("\\newline{}")
-                out.append("\\textit{" + p['where'].strip(".")+"}, "+p['when'].strip(".")+".")
+                out.append("\\textit{" + stripdot(p['where'])+"}, "+stripdot(p['when'])+".")
                 if p['more']:
                     out.append("\\newline{}")
-                    out.append("\\textcolor{color1}{$\\bullet$} "+p['more'].strip(".")+".")
+                    out.append("\\textcolor{color1}{$\\bullet$} "+stripdot(p['more'])+".")
                 out.append("\\vspace{0.05cm}\\\\")
                 out.append("%")
                 i=i-1
@@ -273,44 +279,49 @@ def metricspapers(papers,filename="metricspapers.tex"):
         out.append("\\textbf{"+str(len(papers['submitted']['data']))+"} papers in submission stage,")
     elif len(papers['submitted']['data'])==1:
         out.append("\\textbf{"+str(len(papers['submitted']['data']))+"} paper in submission stage,")
+    if len(papers['inprep']['data'])>1:
+        out.append("\\textbf{"+str(len(papers['inprep']['data']))+"} papers in preparation,")
+    elif len(papers['inprep']['data'])==1:
+        out.append("\\textbf{"+str(len(papers['inprep']['data']))+"} paper in preparation,")
 
     out.append("\\\\ & &")
-    out.append("\\textbf{"+str(len(papers['proceedings']['data']))+"} other publications (white papers, long-authorlist reviews, proceedings, software, etc)")
+    nother = len(papers['proceedings']['data']) + len(papers['others']['data'])
+    out.append("\\textbf{"+str(nother)+"} other publication"+("" if nother==1 else "s")+" (white papers, long-authorlist reviews, proceedings, software, etc)")
     out.append("\\\\ & &")
 
     first_author = []
-    for k in ['submitted','published','proceedings']:
+    for k in ['inprep','submitted','published','proceedings']:
         for p in papers[k]['data']:
             if "F. De Santi" not in p['author']:
                 raise ValueError("Looks like you're not an author:", p['title'])
             first_author.append( p['author'].split("F. De Santi")[0]=="" )
 
-    out.append("(out of which \\textbf{"+str(np.sum(first_author))+"} first-authored papers")
+    firstauthorline = "(out of which \\textbf{"+str(np.sum(first_author))+"} first-authored papers"
 
     press_release = []
-    for k in ['submitted','published','proceedings', 'others']:
+    for k in ['inprep','submitted','published','proceedings', 'others']:
         for p in papers[k]['data']:
             press_release.append("press release" in p['more'])
     if np.sum(press_release)>0:
-        out.append(" and \\textbf{"+str(np.sum(press_release))+"} papers covered by press releases")
-    out.append(").")
+        firstauthorline += " and \\textbf{"+str(np.sum(press_release))+"} papers covered by press releases"
+    out.append(firstauthorline+").")
     out.append("\end{tabular} }\medskip")
 
     # including long-authorlist
     ads_citations     = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in papers])
     inspire_citations = np.concatenate([[p['inspire_citations'] for p in papers[k]['data']] for k in papers])
     scholar_citations = np.array(google_scholar_citations(papers))
-    max_citations_including = np.array([cit.max() for cit in [ads_citations, inspire_citations, scholar_citations]])
+    percitation_including = np.maximum(ads_citations, inspire_citations)
     totalnumber_including = max([cit.sum() for cit in [ads_citations, inspire_citations, scholar_citations]])
-    hind_including = hindex(max_citations_including)
+    hind_including = hindex(percitation_including)
 
-    # excluding long-authorlist
-    ads_citations = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in ['submitted','published']])
-    inspire_citations = np.concatenate([[p['inspire_citations'] for p in papers[k]['data']] for k in ['submitted','published']])
-    scholar_citations = np.array(google_scholar_citations(papers))
-    max_citations_excluding = np.array([cit.max() for cit in [ads_citations, inspire_citations, scholar_citations]])
-    totalnumber_excluding = max([cit.sum() for cit in [ads_citations, inspire_citations, scholar_citations]])
-    hind_excluding = hindex(max_citations_excluding)
+    # excluding long-authorlist. Google Scholar reports the whole author profile and
+    # cannot be restricted to a subset of the database, so it is left out here.
+    ads_citations = np.concatenate([[p['ads_citations'] for p in papers[k]['data']] for k in ['inprep','submitted','published']])
+    inspire_citations = np.concatenate([[p['inspire_citations'] for p in papers[k]['data']] for k in ['inprep','submitted','published']])
+    percitation_excluding = np.maximum(ads_citations, inspire_citations)
+    totalnumber_excluding = max([cit.sum() for cit in [ads_citations, inspire_citations]])
+    hind_excluding = hindex(percitation_excluding)
 
     print("\tTotal number of citations:", totalnumber_including, totalnumber_excluding)
     print("\th-index:", hind_including, hind_excluding)

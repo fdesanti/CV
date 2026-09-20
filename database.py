@@ -8,6 +8,7 @@ SHOW_TALKS = True
 
 papers      = {}
 
+inprep      = True
 submitted   = True
 published   = True
 proceedings = True
@@ -20,19 +21,19 @@ seminars    = True
 lectures    = True
 outreach    = True
 
+if inprep:
+
+    papers['inprep'] = {}
+    papers['inprep']['label'] = 'In preparation'
+    papers['inprep']['data'] = []
+
+
+
 if submitted:
 
     papers['submitted'] = {}
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
-
-    # papers['submitted']['data'].append({
-    #   author  = {De Santi, Federico and Mould, Matthew and Gerosa, Davide},
-    #   title   = {Turning the likelihood around: a population-sampling approach to
-    #              gravitational-wave hierarchical inference},
-    #   year    = {2026},
-    #   note    = {in preparation},
-
 
  
     # papers['submitted']['data'].append({
@@ -71,7 +72,7 @@ if published:
         "arxiv":    "arXiv:2505.02773 [gr-qc]",
         "ads":      "2025CQGra..42r5012P",
         "inspire":  "Papalini:2025exy",
-        "more":     ""
+        "more":     "Contribution: Development of the Transformer-based analysis pipeline, training and testing of the model, and analysis of the results. Writing of the paper."
         })
 
     papers['published']['data'].append({
@@ -139,7 +140,7 @@ if others:
         "arxiv":    "arXiv:2503.12263 [gr-qc]",
         "ads":      "",
         "inspire":  "Abac:2025saz",
-        "more":     ""
+        "more":     r"Contribution: Writing and ML for eccentric close encounters methods description in the data analysis section on \textit{Machine Learning for parameter estimation}. "
         })
 
 if conferences:
