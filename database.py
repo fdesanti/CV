@@ -21,6 +21,23 @@ if submitted:
     papers['submitted'] = {}
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
+
+    papers['submitted']['data'].append({
+#         author  = {De Santi, Federico and Mould, Matthew and Gerosa, Davide},
+#   title   = {Turning the likelihood around: a population-sampling approach to
+#              gravitational-wave hierarchical inference},
+#   year    = {2026},
+#   note    = {in preparation},
+        "title":    "Turning the likelihood around: a population-sampling approach to gravitational-wave hierarchical inference",
+        "author":   "F. De Santi, M. Mould, D. Gerosa",
+        "journal":  "(2026)",
+        "link":     "",
+        "arxiv":    "",
+        "ads":      "",
+        "inspire":  "",
+        "more":     "In preparation"
+        })
+
  
     # papers['submitted']['data'].append({
     #    "title":    "Inferring the population properties of galactic binaries from LISA's stochastic foreground",
