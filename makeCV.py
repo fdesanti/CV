@@ -17,7 +17,7 @@ import urllib.request
 from tqdm import tqdm
 from datetime import datetime
 from scholarly import scholarly
-from database import papers, talks
+from database import papers, talks, SHOW_PAPERS, SHOW_TALKS
 #from github_release import gh_release_create
 
 #import ssl
@@ -244,6 +244,19 @@ def parsetalks(talks,filename="parsetalks.tex"):
                 out.append("%")
                 i=i-1
             out.append("\end{longtable} }")
+
+    with open(filename,"w") as f: f.write("\n".join(out))
+
+
+def parseflags(filename="flags.tex"):
+
+    print('Parse display flags from database')
+
+    out=[]
+    out.append("\\newif\\ifshowpapers")
+    out.append("\\showpaperstrue" if SHOW_PAPERS else "\\showpapersfalse")
+    out.append("\\newif\\ifshowtalks")
+    out.append("\\showtalkstrue" if SHOW_TALKS else "\\showtalksfalse")
 
     with open(filename,"w") as f: f.write("\n".join(out))
 
@@ -688,6 +701,7 @@ if __name__ == "__main__":
         #citationspreadsheet(papers)
 
     replacekeys()
+    parseflags()
     builddocs()
 
     os.makedirs("CV", exist_ok=True)

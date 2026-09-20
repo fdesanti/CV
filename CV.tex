@@ -221,15 +221,19 @@ of stimulating their interest in physics.}
 
 %mark_CVshort
 
+\ifshowpapers
 \pagebreak
 \section{Full publication list}%\vspace{0.2cm} 
 
 \input{parsepapers.tex}
+\fi
 
-
+\ifshowtalks
+\ifshowpapers\else\pagebreak\fi
 \section{Full presentation list}%\vspace{0.2cm} 
 
 \input{parsetalks.tex}
+\fi
 %mark_CVshort
 
 % \pagebreak
@@ -292,12 +296,14 @@ of stimulating their interest in physics.}
 
 % \bigskip
 
-\vfill
+\vspace*{\fill}
+\noindent\begin{minipage}{\textwidth}
 \textit{\small I hereby authorize the processing of the personal data in the CV pursuant to Legislative Decree Lgs. 101/2018 and the GDPR (EU Regulation 2016/679).}
 \\[1em]
 \textit{\small Milan, \today}
 \\[0.5em]
 \makebox[\textwidth][r]{\includegraphics[width=0.5\textwidth]{sign.png}}
+\end{minipage}
 
 \pagebreak
 \section{Research Activity}%\vspace{0.2cm} 
