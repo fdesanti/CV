@@ -79,30 +79,26 @@ def ads_citations(papers,testing=False):
                                     r = requests.get("https://api.adsabs.harvard.edu/v1/search/query?q="+p['ads'].replace("&","%26")+"&fl=citation_count,bibcode",headers={'Authorization': 'Bearer ' + token},verify=False)
                                 q= r.json()['response']['docs']
                                 #print(p['ads'], q)
-                                if len(q)!=1:
-                                    raise ValueError("ADS error in "+b)
-                                q=q[0]
-                                if q['citation_count'] is not None:
-                                    p['ads_citations'] = q['citation_count']
-                                else:
-                                    print("Warning: citation count is None.", p['ads'])
-                                    p['ads_citations'] = 0
-                                p['ads_found'] = q['bibcode']
-
                             except Exception as e:
                                 print(e)
                                 retry_time = 5 #req.getheaders()["retry-in"]
                                 print('ADS API error: retry in', retry_time, 's. -- '+p['ads'])
                                 time.sleep(retry_time)
                                 n_retries = n_retries + 1
-                            
-                                if n_retries==11:
+                                if n_retries==10:
                                     print('ADS API error: giving up -- '+p['ads'])
-
-                                    #raise ValueError("ADS error in "+p['ads'])
                                 continue
-                            else:
+
+                            if len(q)!=1:
+                                print("Warning: ADS entry not found, skipping --", p['ads'])
                                 break
+                            q=q[0]
+                            if q.get('citation_count') is not None:
+                                p['ads_citations'] = q['citation_count']
+                            else:
+                                print("Warning: no ADS citation count, skipping --", p['ads'])
+                            p['ads_found'] = q.get('bibcode', "")
+                            break
 
                 else:
                     p['ads_citations'] = 0
@@ -142,8 +138,10 @@ def inspire_citations(papers,testing=False):
                                 q = json.loads(req.read().decode("utf-8"))
                                 n = len(q['hits']['hits'])
                                 if n!=1:
-                                    raise ValueError("INSPIRE error in "+b)
-                                p['inspire_citations']=q['hits']['hits'][0]['metadata']['citation_count']
+                                    print("Warning: INSPIRE entry not found, skipping --", p['inspire'])
+                                    p['inspire_citations'] = 0
+                                else:
+                                    p['inspire_citations']=q['hits']['hits'][0]['metadata'].get('citation_count', 0)
                                 break
 
                 else:
@@ -673,8 +671,21 @@ def pushtogit(comment=None):
 #     os.system("git pull") # This is to get new tags from github
 
 
-def clean():
-    os.system("rm *.aux *.log *.out")
+def clean(docs=("CV", "CVshort", "publist", "talklist")):
+    """Remove LaTeX build products (including the compiled PDFs, which have
+    already been copied into CV/). Other PDFs, e.g. sign.pdf, are left alone."""
+    import glob
+
+    aux_ext = ["aux", "log", "out", "toc", "bbl", "blg", "fls", "fdb_latexmk",
+               "synctex.gz", "lof", "lot", "brf"]
+
+    files = [f"{d}.pdf" for d in docs]
+    for ext in aux_ext:
+        files += glob.glob(f"*.{ext}")
+
+    for f in files:
+        if os.path.isfile(f):
+            os.remove(f)
 
 
 #####################################

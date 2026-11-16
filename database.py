@@ -27,6 +27,21 @@ if inprep:
     papers['inprep']['label'] = 'In preparation'
     papers['inprep']['data'] = []
 
+#     papers['inprep']['data'].append({
+# #         author  = {De Santi, Federico and Mould, Matthew and Gerosa, Davide},
+# #   title   = {Turning the likelihood around: a population-sampling approach to
+# #              gravitational-wave hierarchical inference},
+# #   year    = {2026},
+# #   note    = {in preparation},
+#         "title":    "Turning the likelihood around: a population-sampling approach to gravitational-wave hierarchical inference",
+#         "author":   "F. De Santi, M. Mould, D. Gerosa",
+#         "journal":  "(2026)",
+#         "link":     "",
+#         "arxiv":    "",
+#         "ads":      "",
+#         "inspire":  "",
+#         "more":     "Contribution: Development of a statistical framework to perform population inference directly from population synthesis simulations. Writing of the paper."
+#         })
 
 
 if submitted:
@@ -34,6 +49,17 @@ if submitted:
     papers['submitted'] = {}
     papers['submitted']['label'] = 'Submitted papers'
     papers['submitted']['data'] = []
+
+    papers['submitted']['data'].append({
+        "title":    "Gravitational-wave hierarchical inference from population samples", 
+        "author":   "F. De Santi, D. Gerosa, M. Mould",
+        "journal":  "(2026)",
+        "link":     "",
+        "arxiv":    "arXiv:2611.17428 [astro-ph.HE]",
+        "ads":      "2026arXiv261117428D",
+        "inspire":  "DeSanti:2026gdv",
+        "more":     "",
+        })
 
  
     # papers['submitted']['data'].append({
@@ -94,27 +120,27 @@ if proceedings:
     papers['proceedings']['data'] = []
 
 
-    papers['proceedings']['data'].append({
-        "title":    "New strategies for seismic attenuation at low frequency for third generation gravitational waves detectors",
-        "author":   "M. Vacatello, S. Ardito, M. Baratti, G. Bartoli, L. Bellizzi, G. Demasi, F. De Santi, F. Fidecaro, A. Fiori, L. Muccillo, M.A. Palaia, L. Papalini, M. Razzano",
-        "journal":  "Nuovo Cim.C 48 (2025) 3, 106",
-        "link":     "https://www.sif.it/riviste/sif/ncc/econtents/2025/048/03/article/30",
-        "arxiv":    "",
-        "ads":      "",
-        "inspire":  "Vacatello:2025lvc",
-        "more":     ""
-        })
+    # papers['proceedings']['data'].append({
+    #     "title":    "New strategies for seismic attenuation at low frequency for third generation gravitational waves detectors",
+    #     "author":   "M. Vacatello, S. Ardito, M. Baratti, G. Bartoli, L. Bellizzi, G. Demasi, F. De Santi, F. Fidecaro, A. Fiori, L. Muccillo, M.A. Palaia, L. Papalini, M. Razzano",
+    #     "journal":  "Nuovo Cim.C 48 (2025) 3, 106",
+    #     "link":     "https://www.sif.it/riviste/sif/ncc/econtents/2025/048/03/article/30",
+    #     "arxiv":    "",
+    #     "ads":      "",
+    #     "inspire":  "Vacatello:2025lvc",
+    #     "more":     ""
+    #     })
     
-    papers['proceedings']['data'].append({
-        "title":    "Seismic isolation systems for next-generation gravitational wave detectors",
-        "author":   "M. Razzano, F. Spada, G. Balestri, A. Basti, L. Bellizzi, F. De Santi, F. Fidecaro, A. Fiori, F. Frasconi, A. Gennai, L. Lucchesi, L. Muccillo, L. Orsini, M. Antonietta Palaia, L. Papalini, F. Pilo, P. Prosperi, M. Vacatello",
-        "journal":  "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment (2024)",
-        "link":     "https://www.sciencedirect.com/science/article/pii/S0168900224006016",
-        "arxiv":    "",
-        "ads":      "2024NIMPA106769675R",
-        "inspire":  "Razzano:2024wci",
-        "more":     ""
-        })
+    # papers['proceedings']['data'].append({
+    #     "title":    "Seismic isolation systems for next-generation gravitational wave detectors",
+    #     "author":   "M. Razzano, F. Spada, G. Balestri, A. Basti, L. Bellizzi, F. De Santi, F. Fidecaro, A. Fiori, F. Frasconi, A. Gennai, L. Lucchesi, L. Muccillo, L. Orsini, M. Antonietta Palaia, L. Papalini, F. Pilo, P. Prosperi, M. Vacatello",
+    #     "journal":  "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment (2024)",
+    #     "link":     "https://www.sciencedirect.com/science/article/pii/S0168900224006016",
+    #     "arxiv":    "",
+    #     "ads":      "2024NIMPA106769675R",
+    #     "inspire":  "Razzano:2024wci",
+    #     "more":     ""
+    #     })
 
 
 if others:
@@ -140,7 +166,7 @@ if others:
         "arxiv":    "arXiv:2503.12263 [gr-qc]",
         "ads":      "",
         "inspire":  "Abac:2025saz",
-        "more":     r"Contribution: Writing and ML for eccentric close encounters methods description in the data analysis section on \textit{Machine Learning for parameter estimation}. "
+        "more":     r"Contribution: Writing and description of ML methods for eccentric close encounters in the data analysis section about \textit{Machine Learning for parameter estimation}. "
         })
 
 if conferences:
@@ -256,6 +282,14 @@ if seminars:
     talks['seminars'] = {}
     talks['seminars']['label'] = 'Talks at department seminars'
     talks['seminars']['data'] = []
+
+    talks['seminars']['data'].append({
+        "title":    "Simulation Based Inference applications to LISA and Einstein Telescope",
+        "where":    "Kavli Institute for Cosmology, University of Cambridge",
+        "when":     "14 July 2026",
+        "invited":  True,
+        "more":     ""
+        })
 
     talks['seminars']['data'].append({
         "title":    "Simulation Based Inference applications to LISA and Einstein Telescope",
